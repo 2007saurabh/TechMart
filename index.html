@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TechMart — Price Finder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="site-head">
+    <div class="wrap">
+      <div class="brand-group">
+        <span class="mark">TechMart</span>
+        <span class="tagline">Product Explorer</span>
+      </div>
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch to light mode" title="Switch to light mode">
+        <span class="theme-icon" aria-hidden="true">☀</span>
+      </button>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <section class="finder" aria-labelledby="finder-heading">
+      <h1 id="finder-heading">Find products by price</h1>
+      <p class="finder-sub">Search near a target price, or set a range. Results are pulled from a price-sorted index, not a full scan.</p>
+
+      <div class="finder-tabs" role="tablist">
+        <button class="tab-btn is-active" data-tab="nearest" role="tab" aria-selected="true">Nearest to a price</button>
+        <button class="tab-btn" data-tab="range" role="tab" aria-selected="false">Within a range</button>
+      </div>
+
+      <form class="finder-panel is-active" data-panel="nearest" id="nearest-form">
+        <label for="target-price">Find products around</label>
+        <div class="price-input-row">
+          <span class="currency">₹</span>
+          <input type="number" id="target-price" name="target-price" min="0" step="1" placeholder="70,000" inputmode="numeric" required>
+          <button type="submit" class="btn-primary">Search</button>
+        </div>
+      </form>
+
+      <form class="finder-panel" data-panel="range" id="range-form">
+        <div class="range-labels">
+          <div>
+            <label for="min-price">Minimum</label>
+            <div class="price-input-row">
+              <span class="currency">₹</span>
+              <input type="number" id="min-price" name="min-price" min="0" step="1" placeholder="50,000" inputmode="numeric" required>
+            </div>
+          </div>
+          <div>
+            <label for="max-price">Maximum</label>
+            <div class="price-input-row">
+              <span class="currency">₹</span>
+              <input type="number" id="max-price" name="max-price" min="0" step="1" placeholder="80,000" inputmode="numeric" required>
+            </div>
+          </div>
+        </div>
+        <div class="slider-track" id="slider-track">
+          <div class="slider-fill" id="slider-fill"></div>
+          <input type="range" id="min-slider" class="range-slider" min="0" max="150000" step="500" value="50000" aria-label="Minimum price">
+          <input type="range" id="max-slider" class="range-slider" min="0" max="150000" step="500" value="80000" aria-label="Maximum price">
+        </div>
+        <button type="submit" class="btn-primary btn-block">Find products in this range</button>
+      </form>
+    </section>
+
+    <section class="results" aria-live="polite">
+      <div class="results-head">
+        <h2 id="results-title">Closest products</h2>
+        <span class="results-count" id="results-count"></span>
+      </div>
+      <div class="results-grid" id="results-grid">
+        <p class="empty-state">Enter a price above to see matching products.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <div class="modal-backdrop" id="modal-backdrop">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="modal-close" id="modal-close" aria-label="Close">&times;</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
