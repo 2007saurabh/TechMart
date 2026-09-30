@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TechMart — Popular Products</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="popular.css">
+</head>
+<body>
+
+  <header class="site-head">
+    <div class="wrap">
+      <span class="mark">TechMart</span>
+      <span class="tagline">Product Explorer</span>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <section class="popular-head">
+      <div class="popular-title">
+        <h1>🔥 Popular Products</h1>
+        <p class="popular-sub">Ranked by popularity — rating × review count — pulled with a top-K selection instead of sorting the full catalog.</p>
+      </div>
+
+      <label class="topk-control" for="topk-select">
+        <span>Show Top</span>
+        <select id="topk-select">
+          <option value="3">3</option>
+          <option value="5" selected>5</option>
+          <option value="10">10</option>
+        </select>
+      </label>
+    </section>
+
+    <section class="results" aria-live="polite">
+      <div class="results-grid" id="results-grid"></div>
+    </section>
+
+  </main>
+
+  <div class="modal-backdrop" id="modal-backdrop">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button class="modal-close" id="modal-close" aria-label="Close">&times;</button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <script src="data.js"></script>
+  <script src="popular.js"></script>
+</body>
+</html>
