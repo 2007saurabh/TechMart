@@ -1,41 +1,141 @@
-# TechMart — Smart Price Finder (Challenge 1)
+# TechMart Challenges
 
-A price-search feature for the TechMart product catalog. Users can find products near a target price, or within a min–max range, without scanning the full product list on every search.
+This repository contains multiple front-end challenge projects for the TechMart store. Each challenge is a standalone mini app built with plain HTML, CSS, and JavaScript, and can be opened directly in a browser without a build step.
 
-## Files
+## Challenge folders
 
+- `chalenge_1` — Smart Price Finder
+- `challenge_2` — Popular Products Explorer
+- `challenge_4` — Undo / Redo Cart
+
+## How to navigate the project
+
+1. Open the folder for the challenge you want to test.
+2. Open that folder's `index.html` (or `popular.html` in challenge 2) in a browser.
+3. All related CSS and JavaScript files are linked using relative paths inside the folder.
+4. No server setup is required because these are static web pages.
+
+## Challenge 1: Smart Price Finder (`chalenge_1`)
+
+This project helps users search products by price using efficient lookup logic instead of scanning the full catalog each time.
+
+### Files
+
+```text
+chalenge_1/
+├── index.html
+├── style.css
+├── app.js
+├── data.js
 ```
-index.html   Structure — price finder form, results grid, product modal
-style.css    Styling (dark UI, amber/teal accents)
-app.js       Data flattening, binary search, rendering, modal, slider logic
-data.js      Provided product catalog (unchanged)
+
+### What it does
+
+- Finds products nearest to a target price
+- Filters products within a given min–max range
+- Uses flattened and sorted product data for faster search
+- Uses binary search logic for O(log n) lookups
+- Shows product cards and a product details modal
+
+### How it works
+
+- `data.js` contains the TechMart catalog.
+- `app.js` flattens categories and products, sorts them by price, and performs search logic.
+- `index.html` provides the price form, search tabs, results area, and modal.
+- `style.css` provides the dark dashboard styling and responsive layout.
+
+## Challenge 2: Popular Products (`challenge_2`)
+
+This challenge ranks the most popular products based on rating and review count.
+
+### Files
+
+```text
+challenge_2/
+├── popular.html
+├── popular.css
+├── popular.js
+├── data.js
 ```
 
-Open `index.html` in a browser. No build step, no server required — all files are linked with relative paths.
+### What it does
 
-## How it works
+- Displays a selected top-N product list
+- Ranks items using popularity score
+- Shows product cards with rating, reviews, and price details
+- Uses a modal popup to view more information
 
-**1. Flatten once, sort once.**
-`storeData.categories → subcategories → products` is flattened into a single array on load, then sorted by `price` ascending into `sortedByPrice`. This is the only full pass over the data; every search after that works off the sorted array.
+### How it works
 
-**2. Binary search instead of scanning.**
-- `lowerBound(target)` — first index with `price >= target`
-- `upperBound(target)` — first index with `price > target`
+- `popular.html` sets up the page layout and modal container.
+- `popular.css` contains the product explorer styling.
+- `popular.js` loads the product catalog and renders the top results.
+- `data.js` provides the product data used by the UI.
 
-Both are standard O(log n) binary searches over `sortedByPrice`.
+## Challenge 4: Undo / Redo Cart (`challenge_4`)
 
-**3. Nearest-price search** (`findClosest(target, count)`)
-`lowerBound(target)` finds where the target would sit in the sorted array. From that point, two pointers walk outward (left = cheaper, right = pricier), always taking whichever side is closer to the target, until `count` products are collected. Cost: O(log n) to locate the target + O(count) to collect results — never O(n).
+This challenge focuses on cart actions and reversible state management.
 
-**4. Range search** (`findInRange(min, max)`)
-`lowerBound(min)` and `upperBound(max)` give the start/end indices directly; the matching products are a single array slice. No filtering pass over the whole catalog.
+### Files
 
-**5. UI**
-- Tabs switch between "Nearest to a price" and "Within a range" without reloading.
-- The range tab has a synced dual slider + numeric inputs (dragging the slider updates the number field and vice versa).
-- Results render as cards: name, brand, price (with original price struck through if discounted), star rating, review count, stock note, and a "View Product" button.
-- "View Product" opens a modal with full specifications and tags.
+```text
+challenge_4/
+├── index.html
+├── css/
+│   └── style.css
+├── js/
+│   ├── data.js
+│   ├── cartState.js
+│   ├── undoRedo.js
+│   ├── cartOperations.js
+│   ├── renderCatalog.js
+│   ├── renderCart.js
+│   ├── renderHistory.js
+│   └── main.js
+├── working.md
+```
 
-## Why this matters at scale
+### What it does
 
-Sorting the whole catalog on every keystroke/search would be O(n log n) each time. Here, sorting happens once (O(n log n) total, on load), and every subsequent search is O(log n) or O(log n + k) — the same approach that makes this fast for 22 products keeps it fast for a catalog of a million.
+- Adds products to the cart
+- Removes products and adjusts quantity
+- Tracks the cart history
+- Supports Undo and Redo actions
+- Updates totals and the operation log in real time
+
+### How it works
+
+- `index.html` loads the product catalog and cart interface.
+- `css/style.css` styles the shopping experience.
+- `js/data.js` contains the product list.
+- `js/cartState.js` stores the current cart state.
+- `js/cartOperations.js` handles add/remove/increment/decrement logic.
+- `js/undoRedo.js` manages the undo and redo stacks.
+- `js/render*.js` files render the catalog, cart, and history UI.
+- `js/main.js` bootstraps the app.
+- `working.md` explains the challenge flow and logic in detail.
+
+## General project notes
+
+- Every challenge is built using vanilla JavaScript.
+- There is no dependency installation or framework setup.
+- The apps are designed to run directly from local files.
+- The repository is a collection of static front-end experiments for learning and UI logic practice.
+
+## Quick start
+
+```text
+1. Open the desired challenge folder.
+2. Open the HTML file in your browser.
+3. Interact with the page and test the app.
+```
+
+Example:
+
+```text
+chalenge_1/index.html
+challenge_2/popular.html
+challenge_4/index.html
+```
+
+This repo is meant to show multiple TechMart challenge implementations in one place, making it easy to explore, compare, and learn from each project.
