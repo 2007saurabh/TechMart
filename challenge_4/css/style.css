@@ -1,0 +1,455 @@
+/* ============================================================
+   Global reset
+   ============================================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, sans-serif;
+}
+
+body {
+  background: #f5f7fb;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1.5rem;
+}
+
+/* ============================================================
+   Layout
+   ============================================================ */
+.app-container {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1300px;
+  width: 100%;
+  background: #fff;
+  border-radius: 2rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08),
+    0 8px 20px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+/* ============================================================
+   Catalog (left side)
+   ============================================================ */
+.catalog {
+  flex: 1.2;
+  min-width: 380px;
+  padding: 1.75rem 1.5rem;
+  background: #fff;
+  border-right: 1px solid #eef2f6;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.catalog h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #0b1e33;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.catalog h2 span {
+  background: #eaf1fe;
+  color: #1d4ed8;
+  font-size: 0.9rem;
+  padding: 0.2rem 0.8rem;
+  border-radius: 40px;
+  margin-left: 0.5rem;
+}
+
+.category-tabs {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.5rem;
+}
+
+.category-tab {
+  background: #f1f4f9;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 40px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #2c3e50;
+  cursor: pointer;
+  transition: 0.15s;
+}
+
+.category-tab.active {
+  background: #1d4ed8;
+  color: #fff;
+  box-shadow: 0 6px 12px rgba(29, 78, 216, 0.25);
+}
+
+.product-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.product-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  border: 1px solid #e9eef3;
+  border-radius: 1.25rem;
+  padding: 0.9rem 1rem;
+  transition: 0.1s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+.product-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.04);
+}
+
+.product-info {
+  flex: 1;
+}
+
+.product-name {
+  font-weight: 600;
+  color: #0a1c2f;
+  font-size: 0.98rem;
+  margin-bottom: 0.15rem;
+}
+
+.product-meta {
+  font-size: 0.78rem;
+  color: #5e6f8b;
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.product-price {
+  font-weight: 600;
+  color: #1d4ed8;
+  margin-right: 0.75rem;
+  white-space: nowrap;
+}
+
+.add-btn {
+  background: #eef4ff;
+  color: #1d4ed8;
+  border: none;
+  font-weight: 500;
+  padding: 0.45rem 1rem;
+  border-radius: 40px;
+  cursor: pointer;
+  transition: 0.15s;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  white-space: nowrap;
+}
+
+.add-btn:hover {
+  background: #1d4ed8;
+  color: #fff;
+}
+
+/* ============================================================
+   Cart panel (right side)
+   ============================================================ */
+.cart-panel {
+  flex: 0.9;
+  min-width: 360px;
+  background: #fbfdff;
+  padding: 1.75rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+  overflow-y: auto;
+  border-left: 1px solid #eef2f6;
+}
+
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.cart-header h3 {
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #0b1e33;
+}
+
+.cart-badge {
+  background: #1d4ed8;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 500;
+  padding: 0.25rem 0.75rem;
+  border-radius: 40px;
+}
+
+.undo-redo-bar {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.undo-redo-bar button {
+  flex: 1;
+  background: #fff;
+  border: 1px solid #d0dae8;
+  padding: 0.6rem 0;
+  border-radius: 60px;
+  font-weight: 500;
+  color: #1e2f44;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  transition: 0.1s;
+  font-size: 0.9rem;
+}
+
+.undo-redo-bar button:not(:disabled):hover {
+  background: #eaf1fe;
+  border-color: #1d4ed8;
+  color: #1d4ed8;
+}
+
+.undo-redo-bar button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  background: #f1f4f9;
+}
+
+/* ============================================================
+   Cart items
+   ============================================================ */
+.cart-items {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+  min-height: 120px;
+}
+
+.empty-cart {
+  color: #8a9bb5;
+  text-align: center;
+  padding: 2.5rem 0;
+  font-size: 0.95rem;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  border-radius: 1.25rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid #e9eef3;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+}
+
+.cart-item-info {
+  flex: 1;
+}
+
+.cart-item-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #0b1e33;
+}
+
+.cart-item-price {
+  font-size: 0.8rem;
+  color: #5e6f8b;
+  margin-top: 0.15rem;
+}
+
+.cart-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.qty-control {
+  display: flex;
+  align-items: center;
+  background: #f1f4f9;
+  border-radius: 40px;
+  padding: 0.15rem;
+}
+
+.qty-control button {
+  background: transparent;
+  border: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #1e2f44;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.1s;
+}
+
+.qty-control button:hover {
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.qty-control span {
+  min-width: 24px;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.remove-btn {
+  background: transparent;
+  border: none;
+  color: #b91c1c;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 0.2rem 0.4rem;
+  border-radius: 40px;
+  line-height: 1;
+  transition: 0.1s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.remove-btn:hover {
+  background: #fee2e2;
+}
+
+/* ============================================================
+   Totals
+   ============================================================ */
+.cart-total-section {
+  border-top: 1px solid #e2e8f0;
+  padding-top: 1.25rem;
+  margin-top: auto;
+}
+
+.total-row {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 500;
+  color: #1e2f44;
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+}
+
+.total-row.grand-total {
+  font-weight: 700;
+  font-size: 1.25rem;
+  color: #0b1e33;
+  margin-top: 0.5rem;
+}
+
+/* ============================================================
+   Operation history
+   ============================================================ */
+.history-section {
+  margin-top: 1.75rem;
+  background: #f8fafd;
+  border-radius: 1.25rem;
+  padding: 1rem 1.2rem;
+  border: 1px solid #e9eef3;
+}
+
+.history-section h4 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: #64748b;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.history-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  max-height: 150px;
+  overflow-y: auto;
+  padding-right: 0.25rem;
+}
+
+.history-entry {
+  font-size: 0.85rem;
+  color: #1e2f44;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.2rem 0;
+}
+
+.history-entry .check {
+  color: #16a34a;
+  font-weight: 600;
+}
+
+.history-entry.undone {
+  opacity: 0.5;
+  text-decoration: line-through;
+}
+
+/* ============================================================
+   Scrollbar
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f4f9;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* ============================================================
+   Responsive
+   ============================================================ */
+@media (max-width: 850px) {
+  .app-container {
+    flex-direction: column;
+    border-radius: 1.5rem;
+  }
+
+  .catalog,
+  .cart-panel {
+    min-width: 100%;
+    max-height: none;
+  }
+
+  .catalog {
+    border-right: none;
+    border-bottom: 1px solid #eef2f6;
+  }
+}

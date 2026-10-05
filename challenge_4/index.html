@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Undo/Redo Cart · TechMart</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="app-container">
+    <!-- ============ CATALOG (LEFT) ============ -->
+    <section class="catalog">
+      <h2>🛍️ TechMart <span>catalog</span></h2>
+      <div class="category-tabs" id="categoryTabs"></div>
+      <div class="product-grid" id="productGrid"></div>
+    </section>
+
+    <!-- ============ CART PANEL (RIGHT) ============ -->
+    <aside class="cart-panel">
+      <header class="cart-header">
+        <h3>🛒 Your Cart</h3>
+        <div class="cart-badge" id="cartItemCount">0 items</div>
+      </header>
+
+      <!-- Undo / Redo controls -->
+      <div class="undo-redo-bar">
+        <button id="undoBtn" disabled title="Undo last operation">↩ Undo</button>
+        <button id="redoBtn" disabled title="Redo undone operation">↪ Redo</button>
+      </div>
+
+      <!-- Cart items -->
+      <div class="cart-items" id="cartItemsContainer">
+        <div class="empty-cart">Your cart is empty</div>
+      </div>
+
+      <!-- Totals -->
+      <div class="cart-total-section">
+        <div class="total-row">
+          <span>Subtotal</span>
+          <span id="subtotal">₹0</span>
+        </div>
+        <div class="total-row grand-total">
+          <span>Total</span>
+          <span id="grandTotal">₹0</span>
+        </div>
+      </div>
+
+      <!-- Operation history -->
+      <div class="history-section">
+        <h4>📋 Operation history</h4>
+        <div class="history-list" id="historyList">
+          <div class="history-entry">No operations yet</div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <!-- ============ SCRIPTS (order matters) ============ -->
+  <script src="js/data.js"></script>
+  <script src="js/cartState.js"></script>
+  <script src="js/undoRedo.js"></script>
+  <script src="js/cartOperations.js"></script>
+  <script src="js/renderCatalog.js"></script>
+  <script src="js/renderCart.js"></script>
+  <script src="js/renderHistory.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
