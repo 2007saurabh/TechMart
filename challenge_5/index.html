@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personalized Recommendations Engine</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="app-container">
+    <header class="app-header">
+      <h1>Tech Store</h1>
+      
+      <!-- Controls to test different user contexts -->
+      <div class="user-control-panel">
+        <label for="user-select">Simulate Active User:</label>
+        <select id="user-select">
+          <option value="currentUser">Current User (Viewed: Laptop)</option>
+          <option value="userA">User A (Viewed: Laptop, Mouse, Keyboard, Headphones)</option>
+          <option value="userB">User B (Viewed: Laptop, Mouse, Monitor, Keyboard)</option>
+          <option value="userC">User C (Viewed: Laptop, Monitor, Desk Pad)</option>
+        </select>
+        <button id="refresh-btn" class="refresh-btn">🔄 Refresh Recommendations</button>
+      </div>
+    </header>
+
+    <!-- Context Banner -->
+    <section class="currently-viewing">
+      <span class="section-tag">Currently Viewing</span>
+      <h2 id="current-product-display">Laptop</h2>
+    </section>
+
+    <!-- Recommended For You Section -->
+    <section class="recommendations-container">
+      <div class="section-title-group">
+        <h2>Recommended For You</h2>
+        <p class="subtitle">Based on what other shoppers viewed together</p>
+      </div>
+
+      <!-- Recommendation Cards Container -->
+      <div id="recommendation-cards-grid" class="cards-grid">
+        <!-- Dynamic Cards Inserted Here -->
+      </div>
+    </section>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
