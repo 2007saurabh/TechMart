@@ -7,7 +7,8 @@ This repository contains multiple front-end challenge projects for the TechMart 
 - `chalenge_1` — Smart Price Finder
 - `challenge_2` — Popular Products Explorer
 - `challenge_4` — Undo / Redo Cart
-- Challenge 5 --- Personalized Recommendations _
+- `challenge_5` — Personalized Recommendations
+
 
 ## How to navigate the project
 
